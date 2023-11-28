@@ -107,7 +107,7 @@ function renderCountdown(cbFunc) {
         count--
         if (count) {
             // if count is truthy do something
-            console.log('interval running. count : ', count)
+            // console.log('interval running. count : ', count)
             countdownEl.innerText = count
         } else {
             // otherwise, do something else
@@ -134,11 +134,11 @@ function render() {
 function getRandomRPS() {
     // saves our object keys to an array
     const rps = Object.keys(RPS_LOOKUP)
-    console.log('this is rps inside getRandomRPS: ', rps)
+    // console.log('this is rps inside getRandomRPS: ', rps)
 
     // rps is going to be an array, so we can use Math.Random
     const randomIndex = Math.floor(Math.random() * rps.length)
-    console.log('random index inside getRandomRPS:', randomIndex)
+    // console.log('random index inside getRandomRPS:', randomIndex)
 
     return rps[randomIndex]
 }
@@ -150,6 +150,8 @@ function getWinner() {
     if (results.p === results.c) { return 't' }
     // if the player's choice beats the computer choice, declare player the winner
     // otherwise, if it's not a tie(handled above), the computer wins
+    // here we are using a ternary operator
+    // condition ? 'true result' : 'false result'
     return RPS_LOOKUP[results.p].beats === results.c ? 'p' : 'c'
 }
 
@@ -159,14 +161,14 @@ function handleChoice(evt) {
     // handle when the user clicks something that is not a button
     if (evt.target.tagName !== 'BUTTON') { return }
 
-    console.log('this is what was clicked: \n', evt.target.tagName)
+    // console.log('this is what was clicked: \n', evt.target.tagName)
     // change results.p to whatever is selected(using innerText)
     results.p = evt.target.innerText.toLowerCase()
     // call the random selector for our computer player
     results.c = getRandomRPS()
     // check for a winner
     winner = getWinner()
-    console.log('this is the winner', winner)
+    // console.log('this is the winner', winner)
     // update scores accordingly
     scores[winner] += 1
 
